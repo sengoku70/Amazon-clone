@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script></head>
+
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-lg">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Create Your Account</h2>
+
+    <!-- Role Selection -->
+    <label class="block mb-3 font-semibold text-gray-700">Choose Role</label>
+    <select id="roleSelect" 
+      class="w-full border border-gray-300 p-3 rounded-xl mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <option value="">-- Select Role --</option>
+      <option value="user">User</option>
+      <option value="seller">Seller</option>
+    </select>
+
+    <!-- User Form -->
+    <form id="userForm" action="/auth/Usersignup" method="POST" class="hidden space-y-4">
+      <div>
+        <label class="block text-gray-700">Username</label>
+        <input type="text" name="username" 
+          class="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+      </div>
+
+      <div>
+        <label class="block text-gray-700">Email</label>
+        <input type="email" name="email" 
+          class="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+      </div>
+
+      <div>
+        <label class="block text-gray-700">Password</label>
+        <input type="password" name="password" 
+          class="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+      </div>
+
+      <button type="submit" 
+        class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition font-semibold shadow-md">
+        Signup as User
+      </button>
+    </form>
+
+    <!-- Seller Form -->
+    <form id="sellerForm" action="/auth/Sellersignup" method="POST" class="hidden space-y-4">
+      <div>
+        <label class="block text-gray-700">Shop/Seller Name</label>
+        <input type="text" name="shopName" 
+          class="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      
+      <div>
+        <label class="block text-gray-700">Email</label>
+        <input type="email" name="email" 
+          class="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+
+      <div>
+        <label class="block text-gray-700">Password</label>
+        <input type="password" name="password" 
+          class="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+
+      <button type="submit" 
+        class="w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition font-semibold shadow-md">
+        Signup as Seller
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const roleSelect = document.getElementById("roleSelect");
+    const userForm = document.getElementById("userForm");
+    const sellerForm = document.getElementById("sellerForm");
+
+    roleSelect.addEventListener("change", () => {
+      userForm.classList.add("hidden");
+      sellerForm.classList.add("hidden");
+
+      if (roleSelect.value === "user") {
+        userForm.classList.remove("hidden");
+      } else if (roleSelect.value === "seller") {
+        sellerForm.classList.remove("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>
